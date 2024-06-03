@@ -1,0 +1,52 @@
+PS E:\Projects\family-finance\server> node dbserver.js
+MongoServerSelectionError: 0C140000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1590:SSL alert number 80
+
+    at Topology.selectServer (E:\Projects\family-finance\server\node_modules\mongodb\lib\sdam\topology.js:303:38)
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at process.processTimers (node:internal/timers:511:9)
+    at async Topology._connect (E:\Projects\family-finance\server\node_modules\mongodb\lib\sdam\topology.js:196:28)
+    at async Topology.connect (E:\Projects\family-finance\server\node_modules\mongodb\lib\sdam\topology.js:158:13)
+    at async topologyConnect (E:\Projects\family-finance\server\node_modules\mongodb\lib\mongo_client.js:204:17)
+    at async MongoClient._connect (E:\Projects\family-finance\server\node_modules\mongodb\lib\mongo_client.js:217:13)
+    at async MongoClient.connect (E:\Projects\family-finance\server\node_modules\mongodb\lib\mongo_client.js:142:13)
+    at async run (E:\Projects\family-finance\server\dbserver.js:18:9) {
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-73ua8iw-shard-00-02.jehh2vs.mongodb.net:27017' => [ServerDescription],
+      'ac-73ua8iw-shard-00-00.jehh2vs.mongodb.net:27017' => [ServerDescription],
+      'ac-73ua8iw-shard-00-01.jehh2vs.mongodb.net:27017' => [ServerDescription]
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-1182qq-shard-0',
+    maxElectionId: null,
+    maxSetVersion: null,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [Symbol(errorLabels)]: Set(0) {},
+  [cause]: MongoNetworkError: 0C140000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1590:SSL alert number 80
+
+      at connectionFailureError (E:\Projects\family-finance\server\node_modules\mongodb\lib\cmap\connect.js:353:20)
+      at TLSSocket.<anonymous> (E:\Projects\family-finance\server\node_modules\mongodb\lib\cmap\connect.js:268:44)
+      at Object.onceWrapper (node:events:635:26)
+      at TLSSocket.emit (node:events:520:28)
+      at emitErrorNT (node:internal/streams/destroy:170:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+    [Symbol(errorLabels)]: Set(1) { 'ResetPool' },
+    [cause]: [Error: 0C140000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1590:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}
+
+Reason : Network Access from MongoDB Atlas 
+Solution : Select `Allow Access from Anywhere` in network configuration
