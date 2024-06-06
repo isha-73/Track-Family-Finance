@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
 const Family = require('../models/families');
+const uniqueId = require('../middlewares/codeGenerate');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+
 require('dotenv').config({ path: '.env.local' });
 
 
@@ -29,10 +31,10 @@ router.post('/createfamily', async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
         var family_id = ""
-
+        const family_code = uniqueId
         const newFamily = new Family({
             name: family_name,
-            family_code: "ABCD", // to be generated randomly
+            family_code, // to be generated randomly
             tot_members: 1,
             total_balance: 0,
             tot_expenditure: 0,
