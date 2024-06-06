@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema ({
     email : {type : String , required : true},
     password : {type : String , required : true},
     position : {type : String , required : true},
-    family_code : {type : String , required : true},
+    family_id : {type : String , required : true}, //unique family id 
     family_name : {type : String , required : true},
 });
 

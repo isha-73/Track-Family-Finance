@@ -19,8 +19,8 @@ const member_schema = new mongoose.Schema({
 const family_schema = new mongoose.Schema({
 
     name : { type : String , required: true},
-    fam_id : { type : String , required: true},
-    total_balance : { type : Number , required: true},
+    family_code : { type : String , required: true}, // will change after certain interval
+    total_balance : { type : Number },
     tot_members : { type : Number},
     tot_expenditure : { type : Number},
     tot_savings : { type : Number},
