@@ -16,11 +16,16 @@ const member_schema = new mongoose.Schema({
     spendings : [spend_schema],
 
 });
+const income_schema = new mongoose.Schema({
+    type : {type : String, required : true},
+    amount: {type: Number, required : true}
+})
 const family_schema = new mongoose.Schema({
 
     name : { type : String , required: true},
     family_code : { type : String , required: true}, // will change after certain interval
     total_balance : { type : Number },
+    income_types :[income_schema],
     tot_members : { type : Number},
     tot_expenditure : { type : Number},
     tot_savings : { type : Number},

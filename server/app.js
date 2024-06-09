@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const connectDB = require('./dbserver')
 const registration = require ('./middlewares/registration')
+const login = require('./middlewares/login')
 
 connectDB()
 
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use('/register',registration )
+app.use('/user',login)
 
 // To Start the server
 const PORT = process.env.PORT || 3000;
