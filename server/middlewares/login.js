@@ -2,16 +2,16 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
 const bcrypt = require('bcrypt');
-const session = require('express-session');
+// const session = require('express-session');
 
 require('dotenv').config({ path: '.env.local' });
 
-router.use(session({
-    secret: process.env.SESSION_KEY,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
-}));
+// router.use(session({
+//     secret: process.env.SESSION_KEY,
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: false }
+// }));
 
 // Login route
 router.post('/login', async (req, res) => {
@@ -37,7 +37,11 @@ router.post('/login', async (req, res) => {
         }
 
         // Create a session for the user
-        req.session.user = { id: user._id, email: user.email, family_id: user.family_id, position : user.position };
+        req.session.user = { id: user._id,
+            name:user.name,
+            email: user.email, 
+            family_id: user.family_id, 
+            position : user.position };
 
         // Optionally set a cookie with a custom expiration time (e.g., 1 day)
         req.session.cookie.expires = new Date(Date.now() + 86400 * 1000); // 1 day

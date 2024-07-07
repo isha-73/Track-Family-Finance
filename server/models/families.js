@@ -2,33 +2,43 @@ const mongoose = require('mongoose')
 
 const spend_schema = new mongoose.Schema({
 
-spend_on : { type : String , required: true},
-amount : { type : String , required: true},
+type : { type : String , required: true},
+amount : { type : Number , required: true},
 discription : { type : String },
-balance_at_each : { type : Number , required: true}
-
+// balance_at_each : { type : Number , required: true}
 });
+
+const pm_schema = new mongoose.Schema({
+    type : {type : String, required: true},
+    amount : {type : Number, required: true},
+    description : {type : String},
+    date : {type : Date}
+})
 
 const member_schema = new mongoose.Schema({
 
     name : { type : String , required: true },
-    role : { type : String },
     spendings : [spend_schema],
+    balance : {type: Number , required: true, default: 0},
+    pocket_money : [pm_schema]
 
 });
+
 const income_schema = new mongoose.Schema({
     type : {type : String, required : true},
-    amount: {type: Number, required : true}
+    amount: {type: Number, required : true},
+    date: {type: Date, required : true}
 })
+
 const family_schema = new mongoose.Schema({
 
     name : { type : String , required: true},
     family_code : { type : String , required: true}, // will change after certain interval
-    total_balance : { type : Number },
+    total_balance : { type : Number , default: 0},
     income_types :[income_schema],
     tot_members : { type : Number},
-    tot_expenditure : { type : Number},
-    tot_savings : { type : Number},
+    tot_expenditure : { type : Number, default: 0},
+    tot_savings : { type : Number, default: 0},
     family_members : [member_schema],
 
 });

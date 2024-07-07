@@ -4,17 +4,10 @@ const User = require('../models/users');
 const Family = require('../models/families');
 const uniqueId = require('../middlewares/codeGenerate');
 const bcrypt = require('bcrypt');
-const session = require('express-session');
+
 
 require('dotenv').config({ path: '.env.local' });
 
-
-router.use(session({
-    secret: process.env.SESSION_KEY,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }  //Setting it to true: The session cookie will only be sent over HTTPS
-}));
 
 router.post('/createfamily', async (req, res) => {
     const { name, email, password, family_name } = req.body;
